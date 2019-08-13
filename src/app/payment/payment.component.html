@@ -1,0 +1,57 @@
+<div>
+    <mat-toolbar style="background-color: black;position: fixed;z-index: 9999;">
+        <span style="color:white;margin-right:auto" (click)="goToHome()"><span style="font-size: 44px;">B<span
+                    style="font-size: 38px;">A</span></span><span style="font-size: 32px;">B<span
+                    style="font-size: 26px;">A</span></span>-ALI.Com</span>
+    </mat-toolbar>
+</div><br><br><br><br><br><br>
+
+<div class="col-sm-offset-1 col-sm-10">
+<mat-horizontal-stepper labelPosition="bottom" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Fill out your Detail's</ng-template>
+            <mat-form-field>
+                <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput placeholder="Address" formControlName="firstCtrl1" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput placeholder="pin" formControlName="firstCtrl2" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput type="number" placeholder="Phone" formControlName="firstCtrl3" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Card Detail's</ng-template>
+            <mat-form-field>
+                <input matInput type="number" placeholder="Card No" formControlName="secondCtrl" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput type="date" placeholder="Expiry" formControlName="secondCtrl2" required>
+            </mat-form-field><br>
+            <mat-form-field>
+                <input matInput type="number" placeholder="CVV" formControlName="secondCtrl3" required>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        You are now done....
+        <br>
+        <br>
+        Happy Shopping ...!
+    </mat-step>
+</mat-horizontal-stepper>
+</div>

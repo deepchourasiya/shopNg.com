@@ -1,0 +1,110 @@
+<div>
+    <mat-toolbar style="background-color: black;position: fixed;z-index: 9999;">
+        <span style="color:white;margin-right:auto;cursor: pointer;" (click)="homepage()">
+            <span style="font-size: 30px;">ShopNg.com</span></span>
+        <div>
+            <mat-icon matBadge="{{wishlistcount}}" (click)="goToWishlist()" style="color:white;float: right">
+                turned_in_not</mat-icon>
+        </div>
+        <!-- <div>
+            <mat-icon matBadge="{{bagcount}}" (click)="goToBag()" matBadgeColor="warn"
+                style="color:white;float: right;">shopping_cart</mat-icon>
+        </div> -->
+    </mat-toolbar>
+</div><br><br><br>
+<br>
+<div class="col-sm-offset-1">
+    <div class="col-sm-11" style="border: 0.149rem solid floralwhite;text-align: center;"><br>
+        <div class="row">
+            <div class="col-sm-7" style="text-align: -webkit-center;">
+                <div class="col-sm-5" *ngFor="let product of data;let i=index">
+                    <mat-card class="pd">
+                        <img mat-card-image class="img" style="max-height:260px;margin: 0px" src="{{product.imageUrl}}">
+                        <mat-card-content style="margin-bottom: -5px;">
+                            <div style="font-family: cursive;font-weight: 600;" title="{{product.content}}">
+                                {{product.name}}</div>
+                            <div class="row">
+                                <div style="font-family: sans-serif;font-weight: 600;float: left;padding: 0px 16px;">
+                                    Rs.{{product.price}}</div>
+                                <div style="font-family: sans-serif;font-weight: 600;float: right;margin: 0 20px;"
+                                    title="Review Count">
+                                    <i class="material-icons" matBadge="{{product.review}}">
+                                        rate_review
+                                    </i>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button (click)="addToWishlist(product.id)" mat-icon-button title="Add to Wishlist"
+                                color="warn" aria-label="Example icon-button with a heart icon">
+                                <mat-icon>favorite</mat-icon>
+                            </button>
+                            <button (click)="removefrombag(i)" mat-button color="warn">Remove</button>
+                        </mat-card-actions>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+            <div class="col-sm-4" *ngIf="data!=null && data.length>0" style="text-align: -webkit-center;box-shadow: 0px 0px 3px -1px;border-radius: 3px;min-height: 63vh;
+            max-height: 82vh;margin-top: 50px;padding: 6px 42px;background: #e2e2ef;"><br><br>
+                <span style="font-size: 24px;font-weight: 600;color:#828282e0;font-family: monospace;">Price
+                    Detail's</span>
+                <br><br>
+                <mat-divider></mat-divider>
+                <br><br>
+                <div style="text-align: -webkit-auto;font-size: 16px;font-weight: 500;font-family: initial;">
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <span>Total MRP : </span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>{{mrp}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <span>Tax (GST 18%) :</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>{{tax}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <span>Order Total :</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>{{ordertotal }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-7">
+                            <span>Delivery Charges :</span>
+                        </div>
+                        <div class="col-sm-3">
+                            <span *ngIf="data!=null">120</span>
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+                <mat-divider></mat-divider>
+                <div class="row"
+                    style="text-align: -webkit-auto;font-size: 20px;font-weight: 600;font-family: initial;">
+                    <div class="col-sm-7">
+                        <span>Total :</span>
+                    </div>
+                    <div class="col-sm-4">
+                        <span>{{totalamount}}</span>
+                    </div>
+                </div><br><br>
+                <button mat-raised-button style="width:100%;background: #4ae287;" (click)="goToPayment()">Place
+                    Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="text-align:center" *ngIf="data.length==0 ">
+    <img src="assets/emptycart.png">
+    <h3>Your Cart is Empty !</h3>
+</div>

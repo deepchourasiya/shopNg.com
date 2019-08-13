@@ -1,0 +1,63 @@
+<div>
+    <mat-toolbar style="background-color: black;position: fixed;z-index: 9999;">
+        <span style="color:white;margin-right:auto ;cursor: pointer;">
+            <span style="font-size: 30px;">ShopNg.com</span></span>
+        <div class="input-group" style="font-size:13px;">
+            <input matInput style="font-size:13px;background: #fbfbf7 ;width: 400px;height: 28px;margin-top: 2px;"
+                class="form-control border-secondary" (keyup)="onKeyUp($event)" type="search"
+                placeholder="Search for Product">
+            <div class="input-group-append">
+                <button mat-icon-button title="search" style="margin: -4px -32px;z-index: 2;color:  #484848;"
+                    color="primary">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </div>
+        <div>
+            <mat-icon matBadge="{{wishlistcount}}" (click)="goToWishlish()"
+                style="color:white;float: right;margin: 16px;cursor: pointer;">turned_in_not</mat-icon>
+        </div>
+        <div>
+            <mat-icon matBadge="{{bagcount}}" (click)="goToCart()" matBadgeColor="warn"
+                style="color:white;float: right;cursor: pointer;">shopping_cart</mat-icon>
+        </div>
+    </mat-toolbar>
+</div><br><br><br>
+<div class="col-sm-offset-9" style="border: 0.149rem solid #fbfbf7;width: 19%;text-align: center;">
+    <label>Sort By:</label>&nbsp;&nbsp;<mat-form-field (change)="sort($event.target.value)">
+        <select matNativeControl required>
+            <option value="low">Low Price fisrt</option>
+            <option value="high">High Price fisrt</option>
+        </select>
+    </mat-form-field>
+</div>
+<mat-divider></mat-divider><br>
+<!-- <cdk-virtual-scroll-viewport itemSize="100" style="height:77vh"> -->
+<div style="background: rgb(255, 253, 253);">
+    <div class="col-sm-3" style="text-align: -webkit-center;" *ngFor="let product of data;let i=index">
+        <mat-card class="pd">
+            <img mat-card-image class="img" style="max-height:260px;margin: 0px" src="{{product.imageUrl}}">
+            <mat-card-content style="margin-bottom: -5px;">
+                <div style="font-family: cursive;font-weight: 600;" title="{{product.content}}">{{product.name}}</div>
+                <div class="row">
+                    <div style="font-family: sans-serif;font-weight: 600;float: left;padding: 0px 16px;">
+                        Rs.{{product.price}}</div>
+                    <div style="font-family: sans-serif;font-weight: 600;float: right;margin: 0 20px;" title="Review Count">
+                        <i class="material-icons" matBadge="{{product.review}}" >
+                            rate_review
+                        </i>
+                    </div>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="addToWishlist(product.id)" mat-icon-button title="Add to Wishlist" color="warn"
+                    aria-label="Example icon-button with a heart icon">
+                    <mat-icon>favorite</mat-icon>
+                </button>
+                <button (click)="addToCart(product.id)" mat-button style="float: right;" color="primary">Add To
+                    Cart</button>
+            </mat-card-actions>
+        </mat-card><br>
+    </div>
+</div>
+<!-- </cdk-virtual-scroll-viewport> -->
